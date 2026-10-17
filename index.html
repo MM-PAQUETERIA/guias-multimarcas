@@ -4,7 +4,7 @@
 <title>Guías Multimarcas</title>
 <style>
 
-/* 
+
 :root{--bg:#f3f6fb;--sf:#fff;--tx:#14233c;--mu:#5b6b85;--bd:#cfd9ea;--ac:#1b4fa8;--ac2:#e8f0fc;--er:#b3261e;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1726;--sf:#17233a;--tx:#e6edf8;--mu:#9aabc6;--bd:#2b3b5a;--ac:#7fa8f0;--ac2:#1d2f52;--er:#ff8a80;color-scheme:dark}}
 :root[data-theme="dark"]{--bg:#0f1726;--sf:#17233a;--tx:#e6edf8;--mu:#9aabc6;--bd:#2b3b5a;--ac:#7fa8f0;--ac2:#1d2f52;--er:#ff8a80;color-scheme:dark}
@@ -70,66 +70,7 @@ ul.h{padding-left:18px;margin:6px 0}
 @media print{@page{size:letter landscape;margin:6mm}
 html,body{background:#fff}body>*:not(#sheet){display:none!important}#sheet{display:block}
 .pg{break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
- */
-
-:root {
-    --bg: #f3f6fb;
-    --sf: #fff;
-    --tx: #14233c;
-    --mu: #5b6b85;
-    --bd: #cfd9ea;
-    --ac: #1b4fa8;
-    --ac2: #e8f0fc;
-    --er: #b3261e;
-    --bg-image: url("fondo.jpg"); 
-    color-scheme: light;
-    box-sizing: border-box;
-    padding-top: env(safe-area-inset-top, 0px);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-}
-@media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-        --bg: #0f1726;
-        --sf: #17233a;
-        --tx: #e6edf8;
-        --mu: #9aabc6;
-        --bd: #2b3b5a;
-        --ac: #7fa8f0;
-        --ac2: #1d2f52;
-        --er: #ff8a80;
-        --opacity: 50;
-        --bg-image: url("fondon.jpg");
-        color-scheme: dark;
-    }
-}
-:root[data-theme="dark"] {
-    --bg: #0f1726;
-    --sf: #17233a;
-    --tx: #e6edf8;
-    --mu: #9aabc6;
-    --bd: #2b3b5a;
-    --ac: #7fa8f0;
-    --ac2: #1d2f52;
-    --er: #ff8a80;
-    --opacity: 50; 
-    --bg-image: url("fondon.jpg");
-
-    color-scheme: dark;
-}
-* { box-sizing: border-box; }
-html { scroll-padding-top: env(safe-area-inset-top, 0px); }
-
-body {
-    margin: 0;
-    background-color: var(--bg);
-    background-image: var(--bg-image);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    color: var(--tx);
-    font: 15px/1.45 "Segoe UI", system-ui, Arial, sans-serif;
-    min-height: 100vh;
+ 
 }
 header { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; padding: 14px 18px; background: var(--sf); border-bottom: 1px solid var(--bd); }
 header h1 { font-size: 18px; margin: 0; }
@@ -258,12 +199,12 @@ html,body{background:#fff}body>*:not(#sheet){display:none!important}#sheet{displ
 </section>
 <section id="v4" hidden>
 <fieldset><legend>Logo Multimarcas</legend>
-<p style="margin-top:0;color:var(--mu)">PNG o JPG de buena calidad (800 px de ancho o más).</p>
-<div class="row"><input type="file" id="logo" accept="image/*"><button id="nologo">Quitar logo</button></div></fieldset>
-<fieldset><legend>Respaldos automáticos en una carpeta</legend>
-<p style="margin-top:0;color:var(--mu)">Elige una carpeta de tu computadora. Cada vez que guardes una guía o cambies un estatus se crea ahí un archivo con la fecha y hora. Para que se suba a Google Drive, elige una carpeta dentro de tu carpeta de “Google Drive para escritorio”.</p>
-<p>Carpeta actual: <b id="dirn">ninguna</b></p>
-<div class="row"><button id="carpeta" class="p">Elegir carpeta de respaldos</button><button id="bk">Respaldar ahora</button></div></fieldset>
+<p style="margin-top:0;color:var(--mu)">Subir Logo</p>
+<div class="row"><input type="file" id="logo" accept="image/*"><button id="nologo">ELIMINAR EL LOGO</button></div></fieldset>
+<fieldset><legend>Respaldos</legend>
+<p style="margin-top:0;color:var(--mu)">IMPORTANTE Respaldar solo si se han creado guias de MM al final del dia</p>
+<p>PRUEBA DE RESPALDOS AUTOMATICOS <b id="dirn">BASE DE DATOS AUN PENDIENTE</b></p>
+<div class="row"><button id="carpeta" class="p">NO TOCAR AQUI</button><button id="bk">Respaldar Aqui</button></div></fieldset>
 <fieldset><legend>Restaurar</legend>
 <label>Archivo de respaldo (.json)<input type="file" id="imp" accept=".json"></label></fieldset>
 </section>
