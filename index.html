@@ -362,7 +362,7 @@ return `<div class="pg"><div class="hd"><div>${lg}</div>
 <div class="bc"><b>Sucursal ${esc(s.n)}</b>${esc(s.d)}<br>Tel. ${s.t} · WhatsApp ${s.w}</div>
 <div class="fo"><div class="t">Carta Porte</div><div class="n">${x.folio}</div><div>${esc(x.fecha)}</div></div></div>
 <div class="two">${pt("ORIGEN",x.rem,s.n)}${pt("DESTINO",x.dest,x.destino)}</div>
-<div class="bt"><div><h4>DETALLES (${tot} bulto${tot>1?"s":""})</h4><table><tr><th>Cant.</th><th>Tipo</th><th>Medidas</th><th>Peso c/u</th><th>Contenido</th></tr>${rows}</table></div>
+<div class="bt"><div><h4>DETALLES (${tot} PAQUETES${tot>1?"s":""})</h4><table><tr><th>Cant.</th><th>Tipo</th><th>Medidas</th><th>Peso c/u</th><th>Contenido</th></tr>${rows}</table></div>
 <div><h4>IMPORTE</h4><table class="im"><tr><td>Método de pago</td><td>${m}</td></tr>${ir("Tarifa",i.tarifa)}${ir("Manejo irregular",(+i.exp||0)+(+i.exm||0)+(+i.irr||0))}${ir("Entrega a domicilio"+(x.anillo&&x.destino===DESTINOS[0][1]?" ("+x.anillo+")":""),i.edom)}${ir("Recolección"+(x.anilloR?" ("+x.anilloR+")":""),i.reco)}${ir("Seguro",i.seg)}<tr><td>I.V.A.</td><td></td></tr>${x.vd?`<tr><td>Valor declarado</td><td>${mo(x.vd)}</td></tr>`:""}<tr class="tot"><td>TOTAL</td><td>${mo(i.total)}</td></tr></table></div></div>
 <div class="sg"><div>Nombre y firma de quien documentó</div><div>Nombre y firma de quien recibió</div></div>
 <div class="ft">VALOR NO DECLARADO, MERCANCÍA POR CUENTA Y RIESGO DE QUIEN LO ENVÍA · SERVICIO DE FLETES A TODA LA REPÚBLICA</div></div>`}
