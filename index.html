@@ -229,8 +229,8 @@ const ANILLOS={"1er anillo":50,"2do anillo":80,"3er anillo":100,"Municipio":295}
 const DESTINOS=[["AGS","Aguascalientes, Ags."],["VH","Villa Hidalgo, Jal."],["TC","Teocaltiche, Jal."],["USA","Unión de San Antonio, Jal."],["ENC","Encarnación de Díaz, Jal."],["OTRO","Otro destino (tarifa manual)"]];
 const LIM_PESO=25, COBRO_KG=8;            
 const LIM_IRREGULAR=50, COBRO_IRREGULAR=50;
-const DIV_VOL=5000, LIM_VOL=35, COBRO_VOL=2; 
-const DOM_POR_BULTO=true;  
+const DIV_VOL=5000, LIM_VOL=30, COBRO_VOL=2; 
+const DOM_POR_BULTO=false;  
 const LICENCIA={activa:true,vence:"",propietario:"Bryan Ivan De Anda Ornelas",contacto:"takeda1145w@gmail.com"};
 function bloqueada(){return !LICENCIA.activa||(LICENCIA.vence&&new Date()>new Date(LICENCIA.vence+"T23:59:59"))}
 const $=i=>document.getElementById(i);
@@ -363,7 +363,7 @@ return `<div class="pg"><div class="hd"><div>${lg}</div>
 <div class="fo"><div class="t">Carta Porte</div><div class="n">${x.folio}</div><div>${esc(x.fecha)}</div></div></div>
 <div class="two">${pt("ORIGEN",x.rem,s.n)}${pt("DESTINO",x.dest,x.destino)}</div>
 <div class="bt"><div><h4>DETALLES (${tot} bulto${tot>1?"s":""})</h4><table><tr><th>Cant.</th><th>Tipo</th><th>Medidas</th><th>Peso c/u</th><th>Contenido</th></tr>${rows}</table></div>
-<div><h4>IMPORTE</h4><table class="im"><tr><td>Método de pago</td><td>${m}</td></tr>${ir("Tarifa",i.tarifa)}${ir("Excedente de peso",i.exp)}${ir("Excedente de medidas",i.exm)}${ir("Manejo irregular",i.irr)}${ir("Entrega a domicilio"+(x.anillo&&x.destino===DESTINOS[0][1]?" ("+x.anillo+")":""),i.edom)}${ir("Recolección"+(x.anilloR?" ("+x.anilloR+")":""),i.reco)}${ir("Seguro",i.seg)}${x.vd?`<tr><td>Valor declarado</td><td>${mo(x.vd)}</td></tr>`:""}<tr class="tot"><td>TOTAL</td><td>${mo(i.total)}</td></tr></table></div></div>
+<div><h4>IMPORTE</h4><table class="im"><tr><td>Método de pago</td><td>${m}</td></tr>${ir("Tarifa",i.tarifa)}${ir("Manejo irregular",(+i.exp||0)+(+i.exm||0)+(+i.irr||0))}${ir("Entrega a domicilio"+(x.anillo&&x.destino===DESTINOS[0][1]?" ("+x.anillo+")":""),i.edom)}${ir("Recolección"+(x.anilloR?" ("+x.anilloR+")":""),i.reco)}${ir("Seguro",i.seg)}<tr><td>I.V.A.</td><td></td></tr>${x.vd?`<tr><td>Valor declarado</td><td>${mo(x.vd)}</td></tr>`:""}<tr class="tot"><td>TOTAL</td><td>${mo(i.total)}</td></tr></table></div></div>
 <div class="sg"><div>Nombre y firma de quien documentó</div><div>Nombre y firma de quien recibió</div></div>
 <div class="ft">VALOR NO DECLARADO, MERCANCÍA POR CUENTA Y RIESGO DE QUIEN LO ENVÍA · SERVICIO DE FLETES A TODA LA REPÚBLICA</div></div>`}
 let DIR=null; 
@@ -392,4 +392,3 @@ if(LICENCIA.propietario)document.querySelector("main").insertAdjacentHTML("befor
 </script>
      </body>
          </html>
-  
