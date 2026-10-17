@@ -168,13 +168,12 @@ html,body{background:#fff}body>*:not(#sheet){display:none!important}#sheet{displ
 <fieldset><legend>Valor declarado</legend><div class="g">
 <label>Valor declarado ($, opcional)<input id="vd" type="number" min="0"></label>
 </div></fieldset>
-<!-- Aguascalientes: anillos (solo aparece si el origen o el destino es Aguascalientes) -->
 <fieldset id="w_ags" style="display:none"><legend>Aguascalientes · anillos</legend><div class="g">
 <label id="w_anillo" style="display:none">Anillo de entrega a domicilio<select id="anillo"></select></label>
 <label id="w_reco" style="display:none">Anillo de recolección<select id="anillo_r"></select></label>
 </div></fieldset>
-<fieldset><legend>Importe (se calcula solo, puedes corregirlo)</legend><div class="g">
-<label>Tarifa (subtotal)<input id="tarifa" type="number" min="0" step="0.01"></label>
+<fieldset><legend>Importe (se calcula solo puedes corregirlo)</legend><div class="g">
+<label>Tarifa subtotal<input id="tarifa" type="number" min="0" step="0.01"></label>
 <label>Entrega a domicilio<input id="edom" type="number" min="0" step="0.01"></label>
 <label>Recolección<input id="reco" type="number" min="0" step="0.01"></label>
 <label>Seguro<input id="seg" type="number" min="0" step="0.01"></label>
@@ -199,11 +198,11 @@ html,body{background:#fff}body>*:not(#sheet){display:none!important}#sheet{displ
 </section>
 <section id="v4" hidden>
 <fieldset><legend>Logo Multimarcas</legend>
-<p style="margin-top:0;color:var(--mu)">Subir Logo</p>
-<div class="row"><input type="file" id="logo" accept="image/*"><button id="nologo">ELIMINAR EL LOGO</button></div></fieldset>
-<fieldset><legend>Respaldos</legend>
+<p style="margin-top:0;color:var(--mu)">El logotipo institucional <b>logop.jpg</b> está activo de forma permanente en las guías impresas.</p>
+</fieldset>
+<fieldset><legend>CREAR RESPALDO</legend>
 <p style="margin-top:0;color:var(--mu)">IMPORTANTE Respaldar solo si se han creado guias de MM al final del dia</p>
-<p>PRUEBA DE RESPALDOS AUTOMATICOS <b id="dirn">BASE DE DATOS AUN PENDIENTE</b></p>
+<p>PRUEBA DE RESPALDOS<b id="dirn">SECCION AUN PENDIENTE</b></p>
 <div class="row"><button id="carpeta" class="p">NO TOCAR AQUI</button><button id="bk">Respaldar Aqui</button></div></fieldset>
 <fieldset><legend>SECCION INCOMPLETA NO TOCAR</legend>
 <label>SECCION INCOMPLETA NO TOCAR<input type="file" id="imp" accept=".json"></label></fieldset>
@@ -243,7 +242,7 @@ const mo=v=>v===""||v==null?"$0":"$"+Number(v).toFixed(2).replace(/\.00$/,"");
 function msg(t){const m=$("msg");m.textContent=t;m.style.display="block";clearTimeout(msg.t);msg.t=setTimeout(()=>m.style.display="none",3500)}
 let G=load("mm_guias",[]);                                 
 let C=load("mm_folios",{VH:FOLIO_INICIAL,AGS:FOLIO_INICIAL,TC:FOLIO_INICIAL}); 
-let LOGO=load("mm_logo","");                               
+const LOGO="logop.jpg";                               
 let CL=load("mm_clientes",[]);                              
 function fields(box,p){$(box).innerHTML=`<label class="f2">Buscar cliente guardado<input id="b_${p}" placeholder="Escribe nombre o teléfono" autocomplete="off"></label><div class="f2 cb" id="s_${p}"></div>`+FLD.map(([k,l,t])=>`<label>${l}<input id="${p}_${k}" type="${t}" data-req></label>`).join("");$("b_"+p).oninput=()=>buscar(p)}
 fields("rem","r");fields("dest","d");
@@ -382,8 +381,6 @@ if(manual){const a=document.createElement("a");a.href=URL.createObjectURL(new Bl
 msg(DIR?"No se pudo escribir en la carpeta de respaldos":"Aún no eliges carpeta de respaldos (Ajustes)")}
 $("bk").onclick=()=>respaldar(true);
 $("imp").onchange=e=>{const f=e.target.files[0];if(!f)return;f.text().then(t=>{try{const d=JSON.parse(t);G=d.G||[];C=d.C||C;LOGO=d.LOGO||"";CL=d.CL||[];save("mm_guias",G);save("mm_folios",C);save("mm_logo",LOGO);save("mm_clientes",CL);refresh();msg("Respaldo restaurado")}catch(x){alert("El archivo no es un respaldo válido.")}})};
-$("logo").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{LOGO=r.result;save("mm_logo",LOGO);msg("Logo guardado")};r.readAsDataURL(f)};
-$("nologo").onclick=()=>{LOGO="";save("mm_logo","");msg("Logo quitado")};
 if(bloqueada()){
 document.querySelector("nav").hidden=true;
 document.querySelector("main").innerHTML=`<fieldset><legend>Periodo de prueba finalizado</legend><p>El periodo de prueba de este sistema terminó.${LICENCIA.contacto?" Para continuar usándolo, contacta a: <b>"+esc(LICENCIA.contacto)+"</b>.":""}</p><p>Tus guías y clientes siguen guardados. Descarga una copia de tus datos:</p><div class="row"><button class="p" id="bk2">Descargar mis datos</button></div></fieldset>`;
